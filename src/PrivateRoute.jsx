@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Outlet, Navigate } from 'react-router-dom'
-import { isLoggedIn } from './service/isLoggedIn';
 
 const PrivateRoutes = () => {
 
 
-   if (isLoggedIn()) {
+   if (true) {
     return <Outlet/>
    }
    else{

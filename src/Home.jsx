@@ -5,7 +5,7 @@ import LeftSide from './LeftSide';
 const HomePage = () => {
   return (
     <>
-    <TopHeader />
+    {/* <TopHeader />
     <div className="home-page">
       
       <div className="content-container">
@@ -26,7 +26,7 @@ const HomePage = () => {
       <footer className="footer">
         <p>&copy; 2024 My Homepage. All rights reserved.</p>
       </footer>
-    </div>
+    </div> */}
     </>
   );
 }

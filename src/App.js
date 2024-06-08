@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './style.css';
@@ -7,7 +6,8 @@ import HomePage from './Home';
 import AllOpenIssue from './AllOpenIssue';
 import HighPriorityIssue from './HighPriorityIssue';
 import PrivateRoutes from './PrivateRoute';
-
+import LeftSide from './LeftSide';
+import './tablulatorStyle.css';
 function App() {
   return (
     <div className="App">
@@ -17,31 +17,43 @@ function App() {
           <Route path="/" element={<HomePage />} />
           {/* <Route path="/open-account" element={<RegistrationPage />} /> */}
         </Routes>
-        <div className="split-container">
-          <div className="left">
-            <Routes>
-              <Route element={<PrivateRoutes/>}>
-                
-            
-              </Route>
-            </Routes>
-          </div>
-          <div className="middle">
-            <Routes>
-              <Route element={<PrivateRoutes />}>
-               
-              </Route>
-            </Routes>
-          </div>
-          <div class="right">
-          <Routes>
-              <Route element={<PrivateRoutes/>}>
-              
-              </Route>
-            </Routes>
-          
-          </div>
+
+          <TopHeader />
+    <div className="home-page">
+      
+      <div className="content-container">
+        <div className="side-section">
+          <aside>
+           <LeftSide />
+          </aside>
         </div>
+        <div className="main-section">
+          <header className="header">
+            <h1>Welcome to My Homepage</h1>
+          </header> 
+          <main className="main-content">
+          <Routes>
+              <Route element={<PrivateRoutes />}>
+                <Route path={`/all-open-issue`} element={<HighPriorityIssue/>} />
+                <Route path={`/high-priority-issue`} element={<AllOpenIssue/>} />
+                {/* <Route path={`/medium-priority-issue`} element={<Accountinfo />}  exact/>
+                <Route path={`/low-priority-issue`} element={<FuntTransfer/>} />
+                <Route path={`/closed-issue`} element={<ViewCard />} /> 
+                <Route path={`/my-task`} element={<ViewCard />} />
+                <Route path={`/my-task`} element={<ViewCard />} />
+                <Route path={`/my-task`} element={<ViewCard />} />
+                
+                
+                */}
+              </Route>
+            </Routes>
+          </main>
+        </div>
+      </div>
+      <footer className="footer">
+        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+      </footer>
+    </div>
       </BrowserRouter>
     </div>
   );
