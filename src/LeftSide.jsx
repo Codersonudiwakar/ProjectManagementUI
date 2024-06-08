@@ -7,7 +7,7 @@ function LeftSide() {
 <div>
 <Card className='card-menu'>
       <div className='project-name'>
-        <h1>Project Name</h1>
+        <h1><a href='/'> Project Name</a></h1>
       </div>
     </Card>
     <Card className='card-menu'>

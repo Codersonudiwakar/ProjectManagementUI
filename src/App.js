@@ -14,7 +14,6 @@ function App() {
      <BrowserRouter>
         <Routes>
           {/* <Route path="/login" element={<Login />} /> */}
-          <Route path="/" element={<HomePage />} />
           {/* <Route path="/open-account" element={<RegistrationPage />} /> */}
         </Routes>
 
@@ -27,15 +26,13 @@ function App() {
            <LeftSide />
           </aside>
         </div>
-        <div className="main-section">
-          <header className="header">
-            <h1>Welcome to My Homepage</h1>
-          </header> 
+        <div className="main-section"> 
           <main className="main-content">
           <Routes>
               <Route element={<PrivateRoutes />}>
                 <Route path={`/all-open-issue`} element={<HighPriorityIssue/>} />
                 <Route path={`/high-priority-issue`} element={<AllOpenIssue/>} />
+                <Route path={`/`} element={<HomePage/>} />
                 {/* <Route path={`/medium-priority-issue`} element={<Accountinfo />}  exact/>
                 <Route path={`/low-priority-issue`} element={<FuntTransfer/>} />
                 <Route path={`/closed-issue`} element={<ViewCard />} /> 

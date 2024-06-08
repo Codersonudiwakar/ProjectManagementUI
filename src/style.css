@@ -3,10 +3,21 @@
     flex-direction: column;
     align-items: center;
   }
+  .home-sub-card-container {
+    display: flex;
+    border: none; /* Adjust the gap between sub-cards as needed */
+  }
   
+  .home-sub-card {
+    flex: 1;
+    border: none; /* Makes each sub-card take an equal amount of space */
+  }
   .content-container {
     display: flex;
     width: 100%;
+  }
+  a{
+    text-decoration: none;
   }
   
   .main-section {
@@ -38,4 +49,10 @@ background-color: #f0f0f0;
     padding: 10px;
     background-color: #f1f1f1;
   }
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents table from wrapping */
+}
   

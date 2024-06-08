@@ -33,6 +33,7 @@ const HighPriorityIssue = () => {
         paginationSizeSelector: [10, 20, 30, 40],
         initialSort: [{ column: 'taskTitle', dir: 'asc' }],
         layout: 'fitDataFill',
+        spreadsheet:true,
         placeholder: 'No data available',
         reactiveData: true,
         renderHorizontal: "virtual",
@@ -43,12 +44,15 @@ const HighPriorityIssue = () => {
     };
 
     return (
+        <div class="table-container">
         <ReactTabulator
-        columns={columns}
-        data={data}
-        layout={'fitColumns'}
-        options={{ pagination: true }}
-      />
+            data={data}
+            columns={columns}
+            options={options}
+            renderHorizontal="virtual"
+            layout="fitData" // Set layout to fitDataFill for auto-size columns
+        />
+        </div>
     );
 };
 

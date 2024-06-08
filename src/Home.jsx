@@ -1,6 +1,9 @@
 import React from 'react';
 import TopHeader from './TopHeader';
 import LeftSide from './LeftSide';
+import IssueChartComponent from './IssueChartComponent';
+import AllIssueChart from './AllIssueChart';
+import Card from 'react-bootstrap/Card';
 
 const HomePage = () => {
   return (
@@ -27,6 +30,22 @@ const HomePage = () => {
         <p>&copy; 2024 My Homepage. All rights reserved.</p>
       </footer>
     </div> */}
+    <Card className="home-card">
+  <div className="home-sub-card-container">
+    <Card className='home-sub-card'>
+    <Card.Header><h2>Priority Based Task</h2></Card.Header>
+      <IssueChartComponent />
+    </Card>
+
+    <Card className='home-sub-card'>
+    <Card.Header><h2>All Task</h2></Card.Header>
+      <AllIssueChart />
+    </Card>
+  </div>
+</Card>
+
+   
+  
     </>
   );
 }
