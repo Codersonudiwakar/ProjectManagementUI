@@ -1,0 +1,41 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .content-container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .main-section {
+    width: 80%;
+    padding: 20px;
+  }
+  
+  .side-section {
+    width: 20%;
+    padding: 20px;
+    background-color: #f0f0f0; /* optional: for visual distinction */
+  }
+  .card-menu{
+    background-color: #f0f0f0;
+    border: none;
+  }
+  .card-menu-li{
+background-color: #f0f0f0;
+  }
+  
+  .header, .main-content, .footer {
+    text-align: center;
+  }
+  
+  .footer {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+  }
+  
