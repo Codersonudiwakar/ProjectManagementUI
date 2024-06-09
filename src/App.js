@@ -8,12 +8,13 @@ import HighPriorityIssue from './HighPriorityIssue';
 import PrivateRoutes from './PrivateRoute';
 import LeftSide from './LeftSide';
 import './tablulatorStyle.css';
+import LoginForm from './LoginForm';
 function App() {
   return (
     <div className="App">
      <BrowserRouter>
         <Routes>
-          {/* <Route path="/login" element={<Login />} /> */}
+           <Route path="/login" element={<LoginForm/>} />
           {/* <Route path="/open-account" element={<RegistrationPage />} /> */}
         </Routes>
 
