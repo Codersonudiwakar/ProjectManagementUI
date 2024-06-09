@@ -3,6 +3,16 @@ import 'react-tabulator/lib/styles.css';
 import 'react-tabulator/css/bootstrap/tabulator_bootstrap.min.css';
 import { ReactTabulator } from 'react-tabulator';
 
+const buttonFormatter = (cell, formatterParams, onRendered) => {
+    const buttonElement = document.createElement('button');
+    buttonElement.textContent = 'Click Me';
+    buttonElement.addEventListener('click', () => {
+      console.log(`Clicked button for row ID: ${cell.getData().id}`);
+      // Add your desired functionality here
+    });
+    return buttonElement;
+  };
+
 const HighPriorityIssue = () => {
     const [data, setData] = useState([
         { id: 1, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
