@@ -71,7 +71,8 @@ background-color: #f0f0f0;
   min-width: 100px;      /* Ensure the width does not go below 200px */
   overflow-wrap: break-word;  /* Wrap words when they are too long */
   white-space: normal;        /* Allow text to wrap to the next line */
-  word-break: break-word;     /* Break words to prevent overflow */
+  word-break: break-word;  
+  border: none;   /* Break words to prevent overflow */
 }
 
 .word-wrap {
@@ -79,4 +80,21 @@ background-color: #f0f0f0;
   white-space: normal;
   word-wrap: break-word;
   word-break: break-word;
+}
+
+/* src/App.css */
+.tabulator .tabulator-tableHolder .tabulator-table .tabulator-row .tabulator-cell {
+  border: none;
+  background-color: transparent;
+}
+
+.tabulator-row .tabulator-cell {
+  border: none;
+  background-color: transparent;
+}
+
+.tabulator-row .tabulator-row-even {
+  border: none;
+  background-color: transparent;
+  background: none;
 }
