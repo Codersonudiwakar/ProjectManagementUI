@@ -50,9 +50,33 @@ background-color: #f0f0f0;
     background-color: #f1f1f1;
   }
 
-  .table-container {
-    width: 100%;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    white-space: nowrap; /* Prevents table from wrapping */
+ 
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents table from wrapping */
 }
-  
+
+.tabulator {
+  width: 100%; /* Ensures the table takes the full width of the container */
+  border-collapse: collapse; /* Ensures that borders do not add extra space */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  table-layout: fixed; /* Ensures the columns do not auto-resize */
+}
+
+/* Set the maximum width for the taskTitle column */
+.tabulator .tabulator-cell {
+            /* Set the cell width */
+  max-width: 500px;      /* Ensure the width does not exceed 200px */
+  min-width: 100px;      /* Ensure the width does not go below 200px */
+  overflow-wrap: break-word;  /* Wrap words when they are too long */
+  white-space: normal;        /* Allow text to wrap to the next line */
+  word-break: break-word;     /* Break words to prevent overflow */
+}
+
+.word-wrap {
+  max-width: 300px;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+}

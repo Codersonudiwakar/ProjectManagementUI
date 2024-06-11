@@ -30,6 +30,7 @@ const HomePage = () => {
         <p>&copy; 2024 My Homepage. All rights reserved.</p>
       </footer>
     </div> */}
+
     <Card className="home-card">
   <div className="home-sub-card-container">
     <Card className='home-sub-card'>

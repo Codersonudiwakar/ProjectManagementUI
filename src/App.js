@@ -9,6 +9,7 @@ import PrivateRoutes from './PrivateRoute';
 import LeftSide from './LeftSide';
 import './tablulatorStyle.css';
 import LoginForm from './LoginForm';
+import MediumPriorityIssue from './MediumPriorityIssue';
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,7 @@ function App() {
               <Route element={<PrivateRoutes />}>
                 <Route path={`/all-open-issue`} element={<HighPriorityIssue/>} />
                 <Route path={`/high-priority-issue`} element={<AllOpenIssue/>} />
+                <Route path={`/medium-priority-issue`} element={<MediumPriorityIssue/>} />
                 <Route path={`/`} element={<HomePage/>} />
                 {/* <Route path={`/medium-priority-issue`} element={<Accountinfo />}  exact/>
                 <Route path={`/low-priority-issue`} element={<FuntTransfer/>} />

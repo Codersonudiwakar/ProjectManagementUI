@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import 'react-tabulator/lib/styles.css';
-import 'react-tabulator/css/bootstrap/tabulator_bootstrap.min.css';
+// src/App.js
+import React, { useState } from 'react';
+import 'tabulator-tables/dist/css/tabulator.min.css';
 import { ReactTabulator } from 'react-tabulator';
+import 'react-tabulator/lib/styles.css';
 
-const buttonFormatter = (cell, formatterParams, onRendered) => {
-    const buttonElement = document.createElement('button');
-    buttonElement.textContent = 'Click Me';
-    buttonElement.addEventListener('click', () => {
-      console.log(`Clicked button for row ID: ${cell.getData().id}`);
-      // Add your desired functionality here
-    });
-    return buttonElement;
-  };
 
-const HighPriorityIssue = () => {
+const options = {
+  pagination: "local",
+  paginationSize: 10,
+  paginationSizeSelector: [10, 20, 50],
+  layout: "fitDataFill ",
+};
+
+const HighPriorityIssue  = () => {
+
+
     const [data, setData] = useState([
         { id: 1, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
-        { id: 2, taskTitle: 'The total sales amount in the report should match the sum of all individual transaction amounts.', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { title: 'Title', field: 'taskTitle', sorter: 'string', headerFilter: 'input', formatter: (cell) => {
+            return `<div class="word-wrap">${cell.getValue()}</div>`;
+          }},
         { id: 3, taskTitle: ' Accurate sales reports are critical for business operations', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
         { id: 4, taskTitle: 'Create a new React project using create-react-app', status: "Test", createdUser: 'SONU333', createdDate: "20-05-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
         { id: 5, taskTitle: ' Accurate sales reports are critical for business operations', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
@@ -35,35 +38,25 @@ const HighPriorityIssue = () => {
         { title: 'Created Date', field: 'createdDate', sorter: 'string', headerFilter: 'input' },
         { title: 'Assign To', field: 'assignedUser', sorter: 'string', headerFilter: 'input' },
         { title: 'Last Modified Date', field: 'lastModified', sorter: 'string', headerFilter: 'input' },
-    ];
+        { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
+          return "<button>Delete</button>";
+        }, cellClick: (e, cell) => {
+          const rowData = cell.getData();
+          setTableData(prevData => prevData.filter(task => task.id !== rowData.id));
+        }},
+      ];
+  const [tableData, setTableData] = useState(data);
 
-    const options = {
-        pagination: 'remote',
-        paginationSize: 10,
-        paginationSizeSelector: [10, 20, 30, 40],
-        initialSort: [{ column: 'taskTitle', dir: 'asc' }],
-        layout: 'fitDataFill',
-        spreadsheet:true,
-        placeholder: 'No data available',
-        reactiveData: true,
-        renderHorizontal: "virtual",
-        headerFiltered: true,
-        headerFilterPlaceholder: 'Search...',
-        headerFilter: true,
-        headerFilterLiveFilter: true, // Enable live filtering
-    };
 
-    return (
-        <div class="table-container">
-        <ReactTabulator
-            data={data}
-            columns={columns}
-            options={options}
-            renderHorizontal="virtual"
-            layout="fitData" // Set layout to fitDataFill for auto-size columns
-        />
-        </div>
-    );
+  return (
+ 
+      <ReactTabulator
+        data={tableData}
+        columns={columns}
+        options={options}
+        layout="fitDataFill"
+      />
+  );
 };
 
-export default HighPriorityIssue;
+export default HighPriorityIssue ;
