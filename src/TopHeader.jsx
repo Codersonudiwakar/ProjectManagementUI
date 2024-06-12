@@ -20,13 +20,15 @@ const TopHeader=()=> {
   };
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Modal
+       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Registration Form"
+        className="modal-content"
+        overlayClassName="modal-overlay"
       >
         <RegistrationForm closeModal={closeModal} />
-        <button onClick={closeModal}>Close</button>
+        <button className="modal-close-button" onClick={closeModal}>Close</button>
       </Modal>
       <Container fluid>
         <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
