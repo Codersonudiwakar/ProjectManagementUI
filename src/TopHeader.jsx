@@ -1,13 +1,33 @@
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Modal from 'react-modal';
+import RegistrationForm from './CreateTask';
 
-function TopHeader() {
+const TopHeader=()=> {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Registration Form"
+      >
+        <RegistrationForm closeModal={closeModal} />
+        <button onClick={closeModal}>Close</button>
+      </Modal>
       <Container fluid>
         <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -38,7 +58,7 @@ function TopHeader() {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#action2">Link</Nav.Link>{''}
-            <Button variant="primary">Create</Button>{' '}
+            <Button variant="primary" onClick={openModal}>Create</Button>{' '}
           </Nav>
           <Form className="d-flex">
           

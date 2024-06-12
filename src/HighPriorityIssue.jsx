@@ -12,14 +12,11 @@ const options = {
   layout: "fitDataFill ",
 };
 
-const HighPriorityIssue  = () => {
-
-
+const HighPriorityIssue  = () => {  
     const [data, setData] = useState([
         { id: 1, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
-        { title: 'Title', field: 'taskTitle', sorter: 'string', headerFilter: 'input', formatter: (cell) => {
-            return `<div class="word-wrap">${cell.getValue()}</div>`;
-          }},
+        { id: 2, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+
         { id: 3, taskTitle: ' Accurate sales reports are critical for business operations', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
         { id: 4, taskTitle: 'Create a new React project using create-react-app', status: "Test", createdUser: 'SONU333', createdDate: "20-05-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
         { id: 5, taskTitle: ' Accurate sales reports are critical for business operations', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
@@ -37,7 +34,6 @@ const HighPriorityIssue  = () => {
         { title: 'Created By', field: 'createdUser', sorter: 'string', headerFilter: 'input' },
         { title: 'Created Date', field: 'createdDate', sorter: 'string', headerFilter: 'input' },
         { title: 'Assign To', field: 'assignedUser', sorter: 'string', headerFilter: 'input' },
-        { title: 'Last Modified Date', field: 'lastModified', sorter: 'string', headerFilter: 'input' },
         { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
           return "<button>Delete</button>";
         }, cellClick: (e, cell) => {

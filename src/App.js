@@ -10,7 +10,13 @@ import LeftSide from './LeftSide';
 import './tablulatorStyle.css';
 import LoginForm from './LoginForm';
 import MediumPriorityIssue from './MediumPriorityIssue';
-function App() {
+import CreateTask from './CreateTask';
+import RegistrationForm from './CreateTask';
+import Modal from 'react-modal';
+import { useState } from 'react';
+
+const App=()=> {
+
   return (
     <div className="App">
      <BrowserRouter>
