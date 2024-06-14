@@ -38,8 +38,8 @@ const App=()=> {
           <main className="main-content">
           <Routes>
               <Route element={<PrivateRoutes />}>
-                <Route path={`/all-open-issue`} element={<HighPriorityIssue/>} />
-                <Route path={`/high-priority-issue`} element={<AllOpenIssue/>} />
+                <Route path={`/all-open-issue`} element={<AllOpenIssue/>} />
+                <Route path={`/high-priority-issue`} element={<HighPriorityIssue/>} />
                 <Route path={`/medium-priority-issue`} element={<MediumPriorityIssue/>} />
                 <Route path={`/`} element={<HomePage/>} />
                 {/* <Route path={`/medium-priority-issue`} element={<Accountinfo />}  exact/>
@@ -48,8 +48,6 @@ const App=()=> {
                 <Route path={`/my-task`} element={<ViewCard />} />
                 <Route path={`/my-task`} element={<ViewCard />} />
                 <Route path={`/my-task`} element={<ViewCard />} />
-                
-                
                 */}
               </Route>
             </Routes>

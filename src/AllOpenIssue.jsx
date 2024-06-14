@@ -1,67 +1,58 @@
+// src/App.js
 import React, { useState } from 'react';
+import 'tabulator-tables/dist/css/tabulator.min.css';
+import { ReactTabulator } from 'react-tabulator';
+import 'react-tabulator/lib/styles.css';
 
-const data = [
-  { Name: 'John Doe', Class: '10', Sub: 'Math', Mark: 85 },
-  { Name: 'Jane Doe', Class: '10', Sub: 'Science', Mark: 92 },
-  // Add more records to have more than 20 for pagination
-  // ...
-];
 
-const AllOpenIssue = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 20;
+const options = {
+  pagination: "local",
+  paginationSize: 10,
+  paginationSizeSelector: [10, 20, 50],
+  layout: "fitDataFill ",
+};
 
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+const AllOpenIssue  = () => {  
+    const [data, setData] = useState([
+        { id: 1, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 2, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
 
-  const totalPages = Math.ceil(data.length / recordsPerPage);
+        { id: 3, taskTitle: ' Accurate sales reports are critical for business operations', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 4, taskTitle: 'Create a new React project using create-react-app', status: "Test", createdUser: 'SONU333', createdDate: "20-05-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 5, taskTitle: ' Accurate sales reports are critical for business operations', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 6, taskTitle: 'Go to the e-commerce website and log in to a user account.', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 7, taskTitle: 'Add multiple items to the shopping cart.', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 8, taskTitle: 'Add multiple items to the shopping cart.', status: "Inprogress", createdUser: 'SONU53', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 9, taskTitle: 'Observe the total price displayed at the bottom of the cart', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+        { id: 10, taskTitle: 'The total price displayed should be the sum of the prices of all individual items in the cart.', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
+    ]);
 
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+    const columns = [
+        { title: 'Task ID', field: 'id', sorter: 'number', headerFilter: 'input' },
+        { title: 'Title', field: 'taskTitle', sorter: 'string', headerFilter: 'input' },
+        { title: 'Status', field: 'status', sorter: 'string', headerFilter: 'input' },
+        { title: 'Created By', field: 'createdUser', sorter: 'string', headerFilter: 'input' },
+        { title: 'Created Date', field: 'createdDate', sorter: 'string', headerFilter: 'input' },
+        { title: 'Assign To', field: 'assignedUser', sorter: 'string', headerFilter: 'input' },
+        { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
+          return "<button>Delete</button>";
+        }, cellClick: (e, cell) => {
+          const rowData = cell.getData();
+          setTableData(prevData => prevData.filter(task => task.id !== rowData.id));
+        }},
+      ];
+  const [tableData, setTableData] = useState(data);
 
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
 
   return (
-    <div>
-      <h1>Paginated Table</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Class</th>
-            <th>Subject</th>
-            <th>Mark</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentRecords.map((record, index) => (
-            <tr key={index}>
-              <td>{record.Name}</td>
-              <td>{record.Class}</td>
-              <td>{record.Sub}</td>
-              <td>{record.Mark}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <button onClick={prevPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <button onClick={nextPage} disabled={currentPage === totalPages}>
-          Next
-        </button>
-      </div>
-    </div>
+ 
+      <ReactTabulator
+        data={tableData}
+        columns={columns}
+        options={options}
+        layout="fitDataFill"
+      />
   );
 };
 
-export default AllOpenIssue;
+export default AllOpenIssue ;
