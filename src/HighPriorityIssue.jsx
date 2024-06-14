@@ -35,10 +35,7 @@ const HighPriorityIssue  = () => {
         { title: 'Created Date', field: 'createdDate', sorter: 'string', headerFilter: 'input' },
         { title: 'Assign To', field: 'assignedUser', sorter: 'string', headerFilter: 'input' },
         { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
-          return "<button>Delete</button>";
-        }, cellClick: (e, cell) => {
-          const rowData = cell.getData();
-          setTableData(prevData => prevData.filter(task => task.id !== rowData.id));
+          return "<button>View</button>";
         }},
       ];
   const [tableData, setTableData] = useState(data);

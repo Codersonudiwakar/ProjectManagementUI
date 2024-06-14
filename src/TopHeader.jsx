@@ -19,7 +19,7 @@ const TopHeader=()=> {
     setModalIsOpen(false);
   };
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="custom-navbar">
        <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -31,7 +31,10 @@ const TopHeader=()=> {
         <button className="modal-close-button" onClick={closeModal}>Close</button>
       </Modal>
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="/"><div class="logo">
+        <div class="logo-text">Project</div>
+        <div class="logo-subtext">Craft</div>
+    </div></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -41,22 +44,24 @@ const TopHeader=()=> {
           >
             {/* <Nav.Link href="#action1">Home</Nav.Link>
             <Nav.Link href="#action2">Link</Nav.Link> */}
-            <NavDropdown title="People" id="navbarScrollingDropdown">
+            {/* <NavDropdown title="People" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Another action
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
             <NavDropdown title="Project" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
-                Another action
+                Project Name
               </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Dashboard" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
+            <NavDropdown title="Task" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="/high-priority-issue">High Priority Issue</NavDropdown.Item>
+              <NavDropdown.Item href="/medium-priority-issue">
+              Medium Priority Issue
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/low-priority-issue">
+              Low Priority Issue
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#action2">Link</Nav.Link>{''}
