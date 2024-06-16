@@ -14,6 +14,11 @@ import CreateTask from './CreateTask';
 import RegistrationForm from './CreateTask';
 import Modal from 'react-modal';
 import { useState } from 'react';
+import ChatScreen from './ChatScreen';
+import LowPriorityIssue from './LowPriorityIssue';
+import MyTask from './MyTask';
+import ClosedTask from './ClosedTask';
+import { ToastContainer } from 'react-toastify';
 
 const App=()=> {
 
@@ -27,6 +32,7 @@ const App=()=> {
 
           <TopHeader />
     <div className="home-page">
+      <ToastContainer/>
       
       <div className="content-container">
         <div className="side-section">
@@ -38,10 +44,15 @@ const App=()=> {
           <main className="main-content">
           <Routes>
               <Route element={<PrivateRoutes />}>
+              <Route path={`/`} element={<HomePage/>} />
                 <Route path={`/all-open-issue`} element={<AllOpenIssue/>} />
                 <Route path={`/high-priority-issue`} element={<HighPriorityIssue/>} />
                 <Route path={`/medium-priority-issue`} element={<MediumPriorityIssue/>} />
-                <Route path={`/`} element={<HomePage/>} />
+                <Route path={`/low-priority-issue`} element={<LowPriorityIssue/>} />
+                <Route path={`/my-task`} element={<MyTask/>} />
+                <Route path={`/closed-tasks`} element={<ClosedTask />} />
+                <Route path={`/chat`} element={<ChatScreen/>} />
+                
                 {/* <Route path={`/medium-priority-issue`} element={<Accountinfo />}  exact/>
                 <Route path={`/low-priority-issue`} element={<FuntTransfer/>} />
                 <Route path={`/closed-issue`} element={<ViewCard />} /> 

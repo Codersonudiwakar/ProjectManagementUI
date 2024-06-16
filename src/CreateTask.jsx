@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './style.css';
-import Select from 'react-select';
 import Card from 'react-bootstrap/Card';
+import { myAxios } from './service/service';
+import { ToastContainer, toast } from 'react-toastify';
 
 const projects = [
     { value: 'project1', label: 'Project 1' },
@@ -26,80 +27,127 @@ const assignees = [
 
 const CreateTask = () => {
     const [formData, setFormData] = useState({
-        project: null,
-        issueType: null,
-        summary: '',
-        description: '',
-        priority: null,
-        assignee: null,
-        points: '',
+        project: '',
+        taskType: '',
+        taskTitle: '',
+        taskDescription: '',
+        taskPriority: '',
+        assigneUser: '',
+        taskPoing: '',
     });
 
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        // Handle form submission logic here
+    const [searchQuery, setSearchQuery] = useState('');
+    const [assignees, setAssignees] = useState([]);
+    const handleSearchChange = async (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (query.length > 2) { // Call API only if query length is greater than 2
+            try {
+                const response = await myAxios.get(`/searchAssignees?query=${query}`);
+                setAssignees(response.data); // Assume response.data is an array of { value, label }
+            } catch (error) {
+                console.error('Error searching assignees:', error);
+            }
+        } else {
+            setAssignees([]);
+        }
     };
 
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const apiUrl = '/tasks';
+
+        try {
+            const response = await myAxios.post(apiUrl, formData);
+            console.log('Response:', response.data);
+            toast.success('Task created successfully', { autoClose: 5000 });
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error('Task creation failed', { autoClose: 5000 });
+        }
+    }
+
     return (
-        
-            <div class="main-card">
-                  <h2>Create New Task</h2>
-            <div class="inner-card">
-            <Card className="text-center">
-                <Card.Body>
-                    <form onSubmit={handleSubmit}>
-                        <label>Project</label>
-                        <Select
-                            className='select'
-                            options={projects}
-                            onChange={(selectedOption) => handleChange('project', selectedOption)}
-                        />
-                        <label>Task Type</label>
-                        <Select
-                            className='select'
-                            options={issueTypes}
-                            onChange={(selectedOption) => handleChange('issueType', selectedOption)}
-                        />
-                        <label>Task Title</label>
-                        <input
-                            type="text"
-                            value={formData.summary}
-                            onChange={(e) => handleChange('summary', e.target.value)}
-                        />
-                        <label>Description</label>
-                        <textarea
-                            value={formData.description}
-                            onChange={(e) => handleChange('description', e.target.value)}
-                        ></textarea>
-                        <label>Priority</label>
-                        <Select
-                            className='select'
-                            options={priorities}
-                            onChange={(selectedOption) => handleChange('priority', selectedOption)}
-                        />
-                        <label>Assignee</label>
-                        <Select
-                            className='select'
-                            placeholder='Search by User ID or Name or Email'
-                            options={assignees}
-                            onChange={(selectedOption) => handleChange('assignee', selectedOption)}
-                        />
-                        <label>Points</label>
-                        <input
-                            type="text"
-                            value={formData.points}
-                            onChange={(e) => handleChange('points', e.target.value)}
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
-                </Card.Body>
-            </Card>
-        </div>
+        <div className="main-card">
+            <h2>Create New Task</h2>
+            <div className="inner-card">
+                <Card className="text-center">
+                    <Card.Body>
+                        <form onSubmit={handleSubmit}>
+                            <label>Project</label>
+                            <select
+                                className='select'
+                                value={formData.project}
+                                onChange={(e) => handleChange('project', e.target.value)}
+                            >
+                                <option value="">Select Project</option>
+                                {projects.map((project) => (
+                                    <option key={project.value} value={project.value}>
+                                        {project.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <label>Task Type</label>
+                            <select
+                                className='select'
+                                value={formData.taskType}
+                                onChange={(e) => handleChange('taskType', e.target.value)}
+                            >
+                                <option value="">Select Task Type</option>
+                                {issueTypes.map((type) => (
+                                    <option key={type.value} value={type.value}>
+                                        {type.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <label>Task Title</label>
+                            <input
+                                type="text"
+                                value={formData.taskTitle}
+                                onChange={(e) => handleChange('taskTitle', e.target.value)}
+                            />
+                            <label>Task Description</label>
+                            <textarea
+                                value={formData.taskDescription}
+                                onChange={(e) => handleChange('taskDescription', e.target.value)}
+                            ></textarea>
+                            <label>Priority</label>
+                            <select
+                                className='select'
+                                value={formData.taskPriority}
+                                onChange={(e) => handleChange('taskPriority', e.target.value)}
+                            >
+                                <option value="">Select Priority</option>
+                                {priorities.map((priority) => (
+                                    <option key={priority.value} value={priority.value}>
+                                        {priority.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <label>Assignee</label>
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                placeholder="Search by User ID or Name or Email"
+                            />
+                            <label>Points</label>
+                            <input
+                                type="text"
+                                value={formData.taskPoing}
+                                onChange={(e) => handleChange('taskPoing', e.target.value)}
+                            />
+                            <button type="submit">Submit</button>
+                        </form>
+                    </Card.Body>
+                </Card>
+            </div>
         </div>
     );
 };

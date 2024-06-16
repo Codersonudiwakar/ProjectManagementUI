@@ -73,6 +73,10 @@ a{
   border: 1px solid #0fbcf9;
 }
 
+.user-icon{
+  margin: 0 20px;
+  font-size: 2rem;
+}
 
 .home-page {
     display: flex;
@@ -150,7 +154,7 @@ background-color: #f0f0f0;
 /* Set the maximum width for the taskTitle column */
 .tabulator .tabulator-cell {
             /* Set the cell width */
-  max-width: 500px;      /* Ensure the width does not exceed 200px */
+  max-width: 450px;      /* Ensure the width does not exceed 200px */
   min-width: 100px;      /* Ensure the width does not go below 200px */
   overflow-wrap: break-word;  /* Wrap words when they are too long */
   white-space: normal;        /* Allow text to wrap to the next line */
@@ -188,7 +192,7 @@ background-color: #f0f0f0;
   background-color: #007bff;
   color: white;
   font-size: 16px;
-  padding: 5px, 20px;
+  padding: 5px, 10px;
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -339,6 +343,47 @@ background-color: #f0f0f0;
   .main-card button {
     font-size: 14px;
   }
+}
+
+.chat-screen {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.message-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.message-input button {
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.message {
+  margin-bottom: 10px;
 }
 
 

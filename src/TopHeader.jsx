@@ -7,6 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Modal from 'react-modal';
 import RegistrationForm from './CreateTask';
+import { FaRegUserCircle } from "react-icons/fa";
+
 
 const TopHeader=()=> {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -39,7 +41,7 @@ const TopHeader=()=> {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '80px' }}
             navbarScroll
           >
             {/* <Nav.Link href="#action1">Home</Nav.Link>
@@ -77,6 +79,10 @@ const TopHeader=()=> {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
+          <div className='user-icon'>
+          <FaRegUserCircle />
+          </div>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

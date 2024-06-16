@@ -12,7 +12,7 @@ const options = {
   layout: "fitDataFill ",
 };
 
-const MyTask  = () => {  
+const ClosedTask  = () => {  
     const [data, setData] = useState([
         { id: 1, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
         { id: 2, taskTitle: 'Create a new React project using create-react-app', status: "Inprogress", createdUser: 'SONU333', createdDate: "20-01-2024", assignedUser: "UTEST55", lastModified: "20-MAY-3826" },
@@ -52,4 +52,4 @@ const MyTask  = () => {
   );
 };
 
-export default MyTask ;
+export default ClosedTask ;
