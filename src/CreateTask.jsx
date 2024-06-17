@@ -61,7 +61,7 @@ const CreateTask = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const apiUrl = '/tasks';
+        const apiUrl = '/addTask';
 
         try {
             const response = await myAxios.post(apiUrl, formData);
