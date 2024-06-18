@@ -29,7 +29,7 @@ const AllOpenIssue  = () => {
 
       useEffect(() => {
         // Replace 'your-api-endpoint' with the actual endpoint from where you are fetching the data
-        myAxios.get('/getAllTasks')
+        myAxios.get('/getOpenTask')
           .then(response => {
             // Assuming response.data is the array of data
             setTableData(response.data);

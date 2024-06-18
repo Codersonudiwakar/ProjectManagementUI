@@ -28,16 +28,16 @@ const ClosedTask  = () => {
     ]);
 
     const columns = [
-        { title: 'Task ID', field: 'id', sorter: 'number', headerFilter: 'input' },
-        { title: 'Title', field: 'taskTitle', sorter: 'string', headerFilter: 'input' },
-        { title: 'Status', field: 'status', sorter: 'string', headerFilter: 'input' },
-        { title: 'Created By', field: 'createdUser', sorter: 'string', headerFilter: 'input' },
-        { title: 'Created Date', field: 'createdDate', sorter: 'string', headerFilter: 'input' },
-        { title: 'Assign To', field: 'assignedUser', sorter: 'string', headerFilter: 'input' },
-        { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
-          return "<button>View</button>";
-        }},
-      ];
+      { title: 'Task ID', field: 'taskID', sorter: 'number', headerFilter: 'input' },
+      { title: 'Title', field: 'taskTitle', sorter: 'string', headerFilter: 'input' },
+      { title: 'Status', field: 'currentStatus', sorter: 'string', headerFilter: 'input' },
+      { title: 'Created By', field: 'reporterUser', sorter: 'string', headerFilter: 'input' },
+      { title: 'Created Date', field: 'createdDate', sorter: 'timestamp', headerFilter: 'input' },
+      { title: 'Assign To', field: 'assignedUser', sorter: 'string', headerFilter: 'input' },
+      { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
+        return "<button>View</button>";
+      }},
+    ];
   const [tableData, setTableData] = useState(data);
 
 
@@ -52,4 +52,4 @@ const ClosedTask  = () => {
   );
 };
 
-export default ClosedTask ;
+export default ClosedTask;
