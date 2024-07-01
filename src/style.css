@@ -386,4 +386,48 @@ background-color: #f0f0f0;
   margin-bottom: 10px;
 }
 
+/* src/TaskView.css */
+.task-view {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.task-view h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.task-view p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.task-view p strong {
+  display: inline-block;
+  width: 150px;
+  font-weight: 600;
+  color: #333;
+}
+
+.task-view .high-priority {
+  color: red;
+  font-weight: bold;
+}
+
+.task-view .medium-priority {
+  color: orange;
+  font-weight: bold;
+}
+
+.task-view .low-priority {
+  color: green;
+  font-weight: bold;
+}
 
