@@ -20,6 +20,7 @@ import MyTask from './MyTask';
 import ClosedTask from './ClosedTask';
 import { ToastContainer } from 'react-toastify';
 import AllClosedIssue from './AllClosedTask';
+import ViewTask from './ViewTask';
 
 const App=()=> {
 
@@ -53,6 +54,7 @@ const App=()=> {
                 <Route path={`/my-task`} element={<MyTask/>} />
                 <Route path={`/closed-tasks`} element={<AllClosedIssue/>} />
                 <Route path={`/chat`} element={<ChatScreen/>} />
+                <Route path={`/chat`} element={<ViewTask/>} />
                 
                 {/* <Route path={`/medium-priority-issue`} element={<Accountinfo />}  exact/>
                 <Route path={`/low-priority-issue`} element={<FuntTransfer/>} />
