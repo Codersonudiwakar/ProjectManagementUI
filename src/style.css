@@ -386,48 +386,83 @@ background-color: #f0f0f0;
   margin-bottom: 10px;
 }
 
-/* src/TaskView.css */
-.task-view {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  max-width: 600px;
+.container {
+  width: 80%;
   margin: 20px auto;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
 }
-
-.task-view h1 {
-  text-align: center;
-  color: #333;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
-
-.task-view p {
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+.header button {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.details, .activity {
+  margin-bottom: 20px;
+}
+.details h2, .activity h2 {
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+.details p, .activity p {
   margin: 10px 0;
+}
+.details span, .activity span {
+  display: block;
+  margin-bottom: 10px;
+}
+.details span strong, .activity span strong {
+  font-weight: bold;
+}
+.comments {
+  margin-top: 20px;
+}
+.comments input, .comments button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.comments button {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.people, .dates, .agile {
+  margin-top: 20px;
+}
+.people h3, .dates h3, .agile h3 {
   font-size: 16px;
-  color: #555;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
 }
-
-.task-view p strong {
-  display: inline-block;
-  width: 150px;
-  font-weight: 600;
-  color: #333;
+.people p, .dates p, .agile p {
+  margin: 5px 0;
 }
-
-.task-view .high-priority {
-  color: red;
-  font-weight: bold;
+.right-side {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
-
-.task-view .medium-priority {
-  color: orange;
-  font-weight: bold;
-}
-
-.task-view .low-priority {
-  color: green;
-  font-weight: bold;
+.right-side .block {
+  width: 30%;
 }
 
