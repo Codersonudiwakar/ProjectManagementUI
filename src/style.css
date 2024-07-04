@@ -403,6 +403,7 @@ background-color: #f0f0f0;
 .header h1 {
   font-size: 24px;
   margin: 0;
+  text-align: left;
 }
 .header button {
   background-color: #0052cc;
@@ -412,13 +413,14 @@ background-color: #f0f0f0;
   border-radius: 3px;
   cursor: pointer;
 }
-.details, .activity {
+.details, .activity, .task-desc {
   margin-bottom: 20px;
 }
-.details h2, .activity h2 {
-  font-size: 18px;
+.details h2, .activity h2, .task-desc h2 {
+  font-size: 25px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
+  text-align: left  ;
 }
 .details p, .activity p {
   margin: 10px 0;
@@ -466,3 +468,22 @@ background-color: #f0f0f0;
   width: 30%;
 }
 
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+table {
+  width: 80%; /* Adjust width as needed */
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+th, td {
+
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}

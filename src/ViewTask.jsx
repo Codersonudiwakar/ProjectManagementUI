@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { myAxios } from './service/service';
+import Select from 'react-select';
+import UserSelect from './UserSelect';
 
-const ViewTask = ({options}) => {
+const ViewTask = () => {
   const { id } = useParams();
   const [task, setTask] = useState(null);
 
@@ -16,67 +18,45 @@ const ViewTask = ({options}) => {
       });
   }, [id]);
 
-  if (!task) {
-    return <div>Loading...</div>;
-  }
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-    alert(`Selected: ${option}`);
-  };
-
-  const filteredOptions = options.filter((option) =>
-    option.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
-   <>
-   <div class="container">
+    <>
+    <div class="container">
+      <div>
+      <h1>Landing on Mars</h1>
+      </div>
         <div class="header">
-            <h1>Landing on Mars</h1>
-            <button><div>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchChange}
-        placeholder="Search..."
-      />
-      <ul>
-        {filteredOptions.map((option) => (
-          <li key={option}>
-            <button onClick={() => handleSelect(option)}>{option}</button>
-          </li>
-        ))}
-      </ul>
-      {selectedOption && <p>Selected Option: {selectedOption}</p>}
-    </div></button>
-            <button>To Do</button>
-            <button>To Do</button>
-            <button>To Do</button>
-            <button>To Do</button>
-            <button>To Do</button>
+        <button>Edit</button>
+        <button>To Do</button>
+        <button><UserSelect/></button>
         </div>
-        <div class="details">
-            <h2>Details</h2>
-            <p>Type: <strong>Story</strong></p>
-            <p>Priority: <strong>Medium</strong></p>
-            <p>Labels: <strong>None</strong></p>
+        
+        <div class="details">   
+        <h2>Details</h2>         
+            <div class="table-container">
+    <table>
+       
+        <tr>
+            <td>Type :</td>
+            <td>Data 2B</td>
+        </tr>
+        <tr>
+        <td>Priority :</td>
+            <td>Data 2B</td>
+        </tr>
+        <tr>
+            <td>Envoirment :</td>
+            <td>Data 3B</td>
+        </tr>
+    </table>
+</div>
+        </div>
+
+        <div class="task-desc">
+            <h2>Description</h2>
             <p>Description: Identify a safe landing spot.</p>
         </div>
         <div class="activity">
-            <h2>Activity</h2>
-            <span>All</span>
-            <span>Comments</span>
-            <span>Work Log</span>
-            <span>History</span>
-            <span>Activity</span>
+            <h2>All Comments</h2>
             <p>There are no comments yet on this issue.</p>
             <div class="comments">
                 <input type="text" placeholder="Add a comment..."/>
@@ -102,8 +82,7 @@ const ViewTask = ({options}) => {
             </div>
         </div>
     </div>
-  
-   </>
+    </>
   );
 };
 
