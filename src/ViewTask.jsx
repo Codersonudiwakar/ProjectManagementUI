@@ -27,7 +27,7 @@ const ViewTask = () => {
         <div class="header">
         <button>Edit</button>
         <button>To Do</button>
-        <button><UserSelect/></button>
+        <UserSelect/>
         </div>
         
         <div class="details">   

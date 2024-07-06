@@ -2,21 +2,20 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { myAxios } from './service/service';
 
-const UserSelect = () => {
+const UserSelect = ({ onUserSelect }) => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [username, setInputValue] = useState('');
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     if (username) {
       myAxios.get(`/api/allUser/${username}`)
         .then(response => {
           const userOptions = response.data.map(user => ({
-            value: user.id,
-            label: user.name // Assuming each user object has an id and name
+            value: user.userName, // Assuming 'userId' is a unique identifier for the user
+            label: user.userName // Assuming 'userName' is the user's name
           }));
           setOptions(userOptions);
-          console.log(userOptions);
         })
         .catch(error => {
           console.error('Error fetching users:', error);
@@ -25,11 +24,12 @@ const UserSelect = () => {
   }, [username]);
 
   const handleInputChange = (newValue) => {
-    setInputValue(newValue);
+    setUsername(newValue);
   };
 
   const handleChange = (selected) => {
     setSelectedOption(selected);
+    onUserSelect(selected);
   };
 
   return (

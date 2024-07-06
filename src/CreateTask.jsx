@@ -3,6 +3,7 @@ import './style.css';
 import Card from 'react-bootstrap/Card';
 import { myAxios } from './service/service';
 import { ToastContainer, toast } from 'react-toastify';
+import UserSelect from './UserSelect';
 
 const projects = [
     { value: 'project1', label: 'Project 1' },
@@ -20,11 +21,6 @@ const priorities = [
     { value: 'high', label: 'High' },
 ];
 
-const assignees = [
-    { value: 'john_doe', label: 'John Doe' },
-    { value: 'jane_smith', label: 'Jane Smith' },
-];
-
 const CreateTask = () => {
     const [formData, setFormData] = useState({
         project: '',
@@ -32,32 +28,17 @@ const CreateTask = () => {
         taskTitle: '',
         taskDescription: '',
         taskPriority: '',
-        assigneUser: '',
-        taskPoing: '',
+        assignee: '',
+        taskPoints: '',
     });
 
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
 
-    const [searchQuery, setSearchQuery] = useState('');
-    const [assignees, setAssignees] = useState([]);
-    const handleSearchChange = async (e) => {
-        const query = e.target.value;
-        setSearchQuery(query);
-
-        if (query.length > 2) { // Call API only if query length is greater than 2
-            try {
-                const response = await myAxios.get(`/searchAssignees?query=${query}`);
-                setAssignees(response.data); // Assume response.data is an array of { value, label }
-            } catch (error) {
-                console.error('Error searching assignees:', error);
-            }
-        } else {
-            setAssignees([]);
-        }
+    const handleUserSelect = (selectedUser) => {
+        setFormData({ ...formData, assigneUser: selectedUser ? selectedUser.value : '' });
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -71,7 +52,7 @@ const CreateTask = () => {
             console.error('Error:', error);
             toast.error('Task creation failed', { autoClose: 5000 });
         }
-    }
+    };
 
     return (
         <div className="main-card">
@@ -131,17 +112,12 @@ const CreateTask = () => {
                                 ))}
                             </select>
                             <label>Assignee</label>
-                            <input
-                                type="text"
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                                placeholder="Search by User ID or Name or Email"
-                            />
+                            <UserSelect onUserSelect={handleUserSelect} />
                             <label>Points</label>
                             <input
                                 type="text"
-                                value={formData.taskPoing}
-                                onChange={(e) => handleChange('taskPoing', e.target.value)}
+                                value={formData.taskPoints}
+                                onChange={(e) => handleChange('taskPoints', e.target.value)}
                             />
                             <button type="submit">Submit</button>
                         </form>
