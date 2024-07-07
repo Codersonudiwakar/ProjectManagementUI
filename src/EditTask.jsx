@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { myAxios } from './service/service';
 import { ToastContainer, toast } from 'react-toastify';
 import UserSelect from './UserSelect';
+import { useParams } from 'react-router-dom';
 
 const projects = [
     { value: 'project1', label: 'Project 1' },
@@ -21,39 +22,61 @@ const priorities = [
     { value: 'high', label: 'High' },
 ];
 
-const EditTask = ({ taskToEdit }) => {
+const EditTask = (Tid) => {
+    const { taskId } = useParams();
+    const [task, setTask] = useState(null);
+
+    useEffect(() => {
+        myAxios.get(`/getOneTask/${id}`)
+            .then(response => {
+                setTask(response.data);
+                console.log(" this is task data");
+                console.log(task);
+            })
+            .catch(error => {
+                console.error('Error fetching task data:', error);
+            });
+    }, [taskId]);
+
+    console.log(task);
     const [formData, setFormData] = useState({
-        project: '',
         taskType: '',
         taskTitle: '',
         taskDescription: '',
         taskPriority: '',
         assignee: '',
-        taskPoints: '',
+        taskPoints: ''
     });
-    const [isEditing, setIsEditing] = useState(false);
-    const [taskId, setTaskId] = useState(null);
 
     useEffect(() => {
-        if (taskToEdit) {
+        // Pre-fill form data when task prop changes
+        if (task) {
             setFormData({
-                project: taskToEdit.project,
-                taskType: taskToEdit.taskType,
-                taskTitle: taskToEdit.taskTitle,
-                taskDescription: taskToEdit.taskDescription,
-                taskPriority: taskToEdit.taskPriority,
-                assignee: taskToEdit.assignee,
-                taskPoints: taskToEdit.taskPoints,
+                taskTitle: task.taskTitle || '',
+                taskDescription: task.taskDescription || '',
+                assigneUser: task.assigneUser || '',
+                currentStatus: task.currentStatus || '',
+                taskType: task.taskType || '',
+                taskPriority: task.taskPriority || '',
+                taskPoing: task.taskPoing || ''
             });
-            setIsEditing(true);
-            setTaskId(taskToEdit.id);
         }
-    }, [taskToEdit]);
+    }, [task]);
 
-    const handleChange = (field, value) => {
-        setFormData({ ...formData, [field]: value });
+
+    const [errors, setErrors] = useState({});
+
+    console.log("Before conversion+" + Tid.taskId);
+    const id = parseInt(Tid.taskId, 10);
+    console.log("After conversion+" + id);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
     };
-
     const handleUserSelect = (selectedUser) => {
         setFormData({ ...formData, assignee: selectedUser ? selectedUser.value : '' });
     };
@@ -61,21 +84,22 @@ const EditTask = ({ taskToEdit }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const apiUrl = '/editTask/${taskId}';
+        const apiUrl = `/editTask/${id}`;
 
         try {
             const response = await myAxios.post(apiUrl, formData);
             console.log('Response:', response.data);
-            toast.success('Task created successfully', { autoClose: 1000 });
+            toast.success('Task Update successfully', { autoClose: 5000 });
         } catch (error) {
             console.error('Error:', error);
-            toast.error('Task creation failed', { autoClose: 5000 });
+            toast.error('Task Update failed', { autoClose: 5000 });
         }
     };
 
+
     return (
         <div className="main-card">
-            <h2>{isEditing ? 'Edit Task' : 'Edit Task'}</h2>
+            <h2>Edit Task</h2>
             <div className="inner-card">
                 <Card className="text-center">
                     <Card.Body>
@@ -95,28 +119,34 @@ const EditTask = ({ taskToEdit }) => {
                             </select>
                             <label>Task Type</label>
                             <select
-                                className='select'
-                                value={formData.taskType}
-                                onChange={(e) => handleChange('taskType', e.target.value)}
-                            >
-                                <option value="">Select Task Type</option>
-                                {issueTypes.map((type) => (
-                                    <option key={type.value} value={type.value}>
-                                        {type.label}
-                                    </option>
-                                ))}
-                            </select>
+    className='select'
+    value={formData.taskType}
+    onChange={(e) => handleChange(e)}
+    name="taskType"
+>
+    <option value="">Select Task Type</option>
+    {issueTypes.map((type) => (
+        <option key={type.value} value={type.value}>
+            {type.label}
+        </option>
+    ))}
+</select>
                             <label>Task Title</label>
                             <input
                                 type="text"
+                                id="taskTitle"
+                                name="taskTitle"
                                 value={formData.taskTitle}
-                                onChange={(e) => handleChange('taskTitle', e.target.value)}
+                                onChange={handleChange}
                             />
+
                             <label>Task Description</label>
                             <textarea
+                                id="taskDescription"
+                                name="taskDescription"
                                 value={formData.taskDescription}
-                                onChange={(e) => handleChange('taskDescription', e.target.value)}
-                            ></textarea>
+                                onChange={handleChange}
+                            />
                             <label>Priority</label>
                             <select
                                 className='select'
@@ -135,10 +165,12 @@ const EditTask = ({ taskToEdit }) => {
                             <label>Points</label>
                             <input
                                 type="text"
-                                value={formData.taskPoints}
-                                onChange={(e) => handleChange('taskPoints', e.target.value)}
+                                id="taskPoing"
+                                name="taskPoing"
+                                value={formData.taskPoing}
+                                onChange={handleChange}
                             />
-                            <button type="submit">{isEditing ? 'Update' : 'Submit'}</button>
+                            <button type="submit">Update Task</button>
                         </form>
                     </Card.Body>
                 </Card>

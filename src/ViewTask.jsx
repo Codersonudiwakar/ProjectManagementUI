@@ -11,6 +11,9 @@ const ViewTask = () => {
   const { id } = useParams();
   const [task, setTask] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [TSid, setTSid] = useState('');
+
+  
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -24,12 +27,16 @@ const ViewTask = () => {
     myAxios.get(`/getOneTask/${id}`)
       .then(response => {
         setTask(response.data);
+        setTSid(response.data.taskID);
       })
       .catch(error => {
         console.error('Error fetching task data:', error);
       });
   }, [id]);
 
+  
+
+  console.log("this is tASK ID ID HERE "+TSid);
   return (
     <>
       <Modal
@@ -39,8 +46,9 @@ const ViewTask = () => {
         className="modal-content"
         overlayClassName="modal-overlay"
       >
-        <EditTask closeModal={closeModal} />
-        <button className="modal-close-button" onClick={closeModal}>Close</button>
+     <EditTask closeModal={closeModal} taskId={TSid} />
+  <a to={`/edit-task/${TSid}`} className="modal-close-button">Go to Edit Task Page</a>
+  <button className="modal-close-button" onClick={closeModal}>Close</button>
       </Modal>
     <div class="container">
       <div>
@@ -48,8 +56,9 @@ const ViewTask = () => {
       </div>
         <div class="header">
         <Button variant="primary" onClick={openModal}>Edit Task</Button>{' '}
-        <button>To Do</button>
-        <UserSelect/>
+       <div>
+       <UserSelect/>
+       </div>
         </div>
         
         <div class="details">   
