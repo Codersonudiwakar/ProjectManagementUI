@@ -3,10 +3,22 @@ import { useParams } from 'react-router-dom';
 import { myAxios } from './service/service';
 import Select from 'react-select';
 import UserSelect from './UserSelect';
+import EditTask from './EditTask';
+import Button from 'react-bootstrap/esm/Button';
+import Modal from 'react-modal';
 
 const ViewTask = () => {
   const { id } = useParams();
   const [task, setTask] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   useEffect(() => {
     myAxios.get(`/getOneTask/${id}`)
@@ -20,12 +32,22 @@ const ViewTask = () => {
 
   return (
     <>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Registration Form"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <EditTask closeModal={closeModal} />
+        <button className="modal-close-button" onClick={closeModal}>Close</button>
+      </Modal>
     <div class="container">
       <div>
-      <h1>Landing on Mars</h1>
+      <h1>{task?.taskTitle}</h1>
       </div>
         <div class="header">
-        <button>Edit</button>
+        <Button variant="primary" onClick={openModal}>Edit Task</Button>{' '}
         <button>To Do</button>
         <UserSelect/>
         </div>
@@ -37,15 +59,19 @@ const ViewTask = () => {
        
         <tr>
             <td>Type :</td>
-            <td>Data 2B</td>
+            <td>{task?.taskType}</td>
         </tr>
         <tr>
         <td>Priority :</td>
-            <td>Data 2B</td>
+        <td>{task?.taskPriority}</td>
+        </tr>
+        <tr>
+            <td>Task Point :</td>
+            <td>{task?.taskPoing}</td>
         </tr>
         <tr>
             <td>Envoirment :</td>
-            <td>Data 3B</td>
+            <td>{task?.taskID}</td>
         </tr>
     </table>
 </div>
@@ -53,7 +79,7 @@ const ViewTask = () => {
 
         <div class="task-desc">
             <h2>Description</h2>
-            <p>Description: Identify a safe landing spot.</p>
+            <p>{task?.taskDescription}</p>
         </div>
         <div class="activity">
             <h2>All Comments</h2>

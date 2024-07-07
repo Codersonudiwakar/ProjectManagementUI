@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
 import TopHeader from './TopHeader';
 import HomePage from './Home';
@@ -34,7 +35,7 @@ const App=()=> {
 
           <TopHeader />
     <div className="home-page">
-      <ToastContainer/>
+    <ToastContainer position="top-right" />
       
       <div className="content-container">
         <div className="side-section">

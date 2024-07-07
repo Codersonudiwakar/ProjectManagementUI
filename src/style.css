@@ -78,6 +78,13 @@ a{
   font-size: 2rem;
 }
 
+
+.Toastify__toast-container--top-right {
+  top: 1rem; /* Adjust the top spacing */
+  right: 1rem; /* Adjust the right spacing */
+}
+
+
 .home-page {
     display: flex;
     flex-direction: column;
@@ -406,10 +413,10 @@ background-color: #f0f0f0;
   text-align: left;
 }
 .header button {
-  background-color: #0052cc;
+  background-color: #3b9ea1;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
 }
