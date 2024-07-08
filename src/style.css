@@ -449,6 +449,9 @@ background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+.edit-page-p{
+  text-align: left;
+}
 .comments button {
   background-color: #0052cc;
   color: white;

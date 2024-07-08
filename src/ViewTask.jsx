@@ -47,7 +47,7 @@ const ViewTask = () => {
         overlayClassName="modal-overlay"
       >
      <EditTask closeModal={closeModal} taskId={TSid} />
-  <a to={`/edit-task/${TSid}`} className="modal-close-button">Go to Edit Task Page</a>
+  {/* <a to={`/edit-task/${TSid}`} className="modal-close-button">Go to Edit Task Page</a> */}
   <button className="modal-close-button" onClick={closeModal}>Close</button>
       </Modal>
     <div class="container">

@@ -66,9 +66,9 @@ const EditTask = (Tid) => {
 
     const [errors, setErrors] = useState({});
 
-    console.log("Before conversion+" + Tid.taskId);
+    
     const id = parseInt(Tid.taskId, 10);
-    console.log("After conversion+" + id);
+   
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,7 +87,7 @@ const EditTask = (Tid) => {
         const apiUrl = `/editTask/${id}`;
 
         try {
-            const response = await myAxios.post(apiUrl, formData);
+            const response = await myAxios.put(apiUrl, formData);
             console.log('Response:', response.data);
             toast.success('Task Update successfully', { autoClose: 5000 });
         } catch (error) {
@@ -105,32 +105,10 @@ const EditTask = (Tid) => {
                     <Card.Body>
                         <form onSubmit={handleSubmit}>
                             <label>Project</label>
-                            <select
-                                className='select'
-                                value={formData.project}
-                                onChange={(e) => handleChange('project', e.target.value)}
-                            >
-                                <option value="">Select Project</option>
-                                {projects.map((project) => (
-                                    <option key={project.value} value={project.value}>
-                                        {project.label}
-                                    </option>
-                                ))}
-                            </select>
+                            <div className='edit-page-p'><p>Project</p></div>
                             <label>Task Type</label>
-                            <select
-    className='select'
-    value={formData.taskType}
-    onChange={(e) => handleChange(e)}
-    name="taskType"
->
-    <option value="">Select Task Type</option>
-    {issueTypes.map((type) => (
-        <option key={type.value} value={type.value}>
-            {type.label}
-        </option>
-    ))}
-</select>
+                            <div className='edit-page-p'><p>{formData.taskType}</p></div>
+                            
                             <label>Task Title</label>
                             <input
                                 type="text"
@@ -150,8 +128,9 @@ const EditTask = (Tid) => {
                             <label>Priority</label>
                             <select
                                 className='select'
+                                name='taskPriority'
                                 value={formData.taskPriority}
-                                onChange={(e) => handleChange('taskPriority', e.target.value)}
+                                onChange={handleChange}
                             >
                                 <option value="">Select Priority</option>
                                 {priorities.map((priority) => (
@@ -161,7 +140,7 @@ const EditTask = (Tid) => {
                                 ))}
                             </select>
                             <label>Assignee</label>
-                            <UserSelect onUserSelect={handleUserSelect} />
+                            <UserSelect value={formData.assignee} onUserSelect={handleUserSelect} />
                             <label>Points</label>
                             <input
                                 type="text"
