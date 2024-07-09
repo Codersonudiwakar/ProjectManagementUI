@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { myAxios } from './service/service';
 
-const UserSelect = ({ onUserSelect }) => {
+const UserSelect = ({ onUserSelect, defaultUser }) => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [username, setUsername] = useState('');
@@ -16,12 +16,21 @@ const UserSelect = ({ onUserSelect }) => {
             label: user.userName // Assuming 'userName' is the user's name
           }));
           setOptions(userOptions);
+
+          // If there's a default user and options have been fetched
+          if (defaultUser) {
+            const defaultUserOption = userOptions.find(option => option.value === defaultUser);
+            if (defaultUserOption) {
+              setSelectedOption(defaultUserOption);
+              onUserSelect(defaultUserOption); // Notify the parent component of the default selection
+            }
+          }
         })
         .catch(error => {
           console.error('Error fetching users:', error);
         });
     }
-  }, [username]);
+  }, [username, defaultUser, onUserSelect]);
 
   const handleInputChange = (newValue) => {
     setUsername(newValue);

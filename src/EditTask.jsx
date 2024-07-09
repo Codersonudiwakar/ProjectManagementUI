@@ -58,7 +58,7 @@ const EditTask = (Tid) => {
                 currentStatus: task.currentStatus || '',
                 taskType: task.taskType || '',
                 taskPriority: task.taskPriority || '',
-                taskPoing: task.taskPoing || ''
+                taskPointng: task.taskPoing || ''
             });
         }
     }, [task]);
@@ -77,8 +77,11 @@ const EditTask = (Tid) => {
             [name]: value
         }));
     };
-    const handleUserSelect = (selectedUser) => {
-        setFormData({ ...formData, assignee: selectedUser ? selectedUser.value : '' });
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    const handleUserSelect = (user) => {
+      setSelectedUser(user);
+      console.log('Selected user:', user);
     };
 
 
@@ -140,13 +143,16 @@ const EditTask = (Tid) => {
                                 ))}
                             </select>
                             <label>Assignee</label>
-                            <UserSelect value={formData.assignee} onUserSelect={handleUserSelect} />
+                            <UserSelect 
+        onUserSelect={handleUserSelect} 
+        defaultUser={formData.assignee} // Replace this with the actual default username you want to use
+      />
                             <label>Points</label>
                             <input
                                 type="text"
                                 id="taskPoing"
                                 name="taskPoing"
-                                value={formData.taskPoing}
+                                value={formData.task}
                                 onChange={handleChange}
                             />
                             <button type="submit">Update Task</button>
