@@ -45,7 +45,7 @@ const EditTask = (Tid) => {
         taskDescription: '',
         taskPriority: '',
         assignee: '',
-        taskPoints: ''
+        taskPoint: ''
     });
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const EditTask = (Tid) => {
                 currentStatus: task.currentStatus || '',
                 taskType: task.taskType || '',
                 taskPriority: task.taskPriority || '',
-                taskPointng: task.taskPoing || ''
+                taskPoint: task.taskPoint || ''
             });
         }
     }, [task]);
@@ -143,15 +143,14 @@ const EditTask = (Tid) => {
                                 ))}
                             </select>
                             <label>Assignee</label>
-                            <UserSelect 
-        onUserSelect={handleUserSelect} 
-        defaultUser={formData.assignee} // Replace this with the actual default username you want to use
-      />
+
+                            <UserSelect onUserSelect={handleUserSelect} />
+      
                             <label>Points</label>
                             <input
                                 type="text"
-                                id="taskPoing"
-                                name="taskPoing"
+                                id="taskPoint"
+                                name="taskPoint"
                                 value={formData.task}
                                 onChange={handleChange}
                             />

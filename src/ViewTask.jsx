@@ -28,6 +28,7 @@ const ViewTask = () => {
       .then(response => {
         setTask(response.data);
         setTSid(response.data.taskID);
+        console.log(response.data);
       })
       .catch(error => {
         console.error('Error fetching task data:', error);
@@ -76,7 +77,7 @@ const ViewTask = () => {
         </tr>
         <tr>
             <td>Task Point :</td>
-            <td>{task?.taskPoing}</td>
+            <td>{task?.taskPoint}</td>
         </tr>
         <tr>
             <td>Envoirment :</td>

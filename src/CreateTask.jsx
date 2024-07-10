@@ -12,6 +12,8 @@ const projects = [
 
 const issueTypes = [
     { value: 'bug', label: 'Bug' },
+    { value: 'story', label: 'Story' },
+    { value: 'test', label: 'Test Plan' },
     { value: 'feature', label: 'Feature' },
 ];
 
@@ -29,7 +31,7 @@ const CreateTask = () => {
         taskDescription: '',
         taskPriority: '',
         assignee: '',
-        taskPoints: '',
+        taskPoint: '',
     });
 
     const handleChange = (field, value) => {
@@ -116,7 +118,7 @@ const CreateTask = () => {
                             <label>Points</label>
                             <input
                                 type="text"
-                                value={formData.taskPoints}
+                                value={formData.taskPoint}
                                 onChange={(e) => handleChange('taskPoints', e.target.value)}
                             />
                             <button type="submit">Submit</button>
