@@ -119,7 +119,7 @@ const CreateTask = () => {
                             <input
                                 type="text"
                                 value={formData.taskPoint}
-                                onChange={(e) => handleChange('taskPoints', e.target.value)}
+                                onChange={(e) => handleChange('taskPoint', e.target.value)}
                             />
                             <button type="submit">Submit</button>
                         </form>

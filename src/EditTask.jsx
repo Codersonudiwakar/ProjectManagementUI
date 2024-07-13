@@ -25,11 +25,10 @@ const priorities = [
 const EditTask = (Tid) => {
     const { taskId } = useParams();
     const [task, setTask] = useState(null);
-
     useEffect(() => {
         myAxios.get(`/getOneTask/${id}`)
             .then(response => {
-                setTask(response.data);
+                setTask(response.data); 
                 console.log(" this is task data");
                 console.log(task);
             })
@@ -79,12 +78,6 @@ const EditTask = (Tid) => {
     };
     const [selectedUser, setSelectedUser] = useState(null);
 
-    const handleUserSelect = (user) => {
-      setSelectedUser(user);
-      console.log('Selected user:', user);
-    };
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const apiUrl = `/editTask/${id}`;
@@ -98,8 +91,7 @@ const EditTask = (Tid) => {
             toast.error('Task Update failed', { autoClose: 5000 });
         }
     };
-
-
+    
     return (
         <div className="main-card">
             <h2>Edit Task</h2>
@@ -142,10 +134,6 @@ const EditTask = (Tid) => {
                                     </option>
                                 ))}
                             </select>
-                            <label>Assignee</label>
-
-                            <UserSelect onUserSelect={handleUserSelect} />
-      
                             <label>Points</label>
                             <input
                                 type="text"
