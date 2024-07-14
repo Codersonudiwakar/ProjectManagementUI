@@ -38,7 +38,7 @@ const MyTask = () => {
     { title: 'Status', field: 'currentStatus', sorter: 'string', headerFilter: 'input' },
     { title: 'Created By', field: 'reporterUser', sorter: 'string', headerFilter: 'input' },
     { title: 'Created Date', field: 'createdDate', sorter: 'timestamp', headerFilter: 'input' },
-    { title: 'Assign To', field: 'assigneUser', sorter: 'string', headerFilter: 'input' },
+    { title: 'Assign To', field: 'assigneeUser', sorter: 'string', headerFilter: 'input' },
     { title: 'Actions', field: 'actions', formatter: (cell, formatterParams, onRendered) => {
       const id = cell.getRow().getData().taskID;
       const button = document.createElement("button");

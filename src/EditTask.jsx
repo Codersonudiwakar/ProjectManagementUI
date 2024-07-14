@@ -43,7 +43,7 @@ const EditTask = (Tid) => {
         taskTitle: '',
         taskDescription: '',
         taskPriority: '',
-        assignee: '',
+        assigneeUser: '',
         taskPoint: ''
     });
 
@@ -53,7 +53,7 @@ const EditTask = (Tid) => {
             setFormData({
                 taskTitle: task.taskTitle || '',
                 taskDescription: task.taskDescription || '',
-                assigneUser: task.assigneUser || '',
+                assigneeUser: task.assigneeUser || '',
                 currentStatus: task.currentStatus || '',
                 taskType: task.taskType || '',
                 taskPriority: task.taskPriority || '',
@@ -83,7 +83,7 @@ const EditTask = (Tid) => {
         const apiUrl = `/editTask/${id}`;
 
         try {
-            const response = await myAxios.put(apiUrl, formData);
+            const response = await myAxios.patch(apiUrl, formData);
             console.log('Response:', response.data);
             toast.success('Task Update successfully', { autoClose: 5000 });
         } catch (error) {
@@ -91,7 +91,7 @@ const EditTask = (Tid) => {
             toast.error('Task Update failed', { autoClose: 5000 });
         }
     };
-    
+
     return (
         <div className="main-card">
             <h2>Edit Task</h2>

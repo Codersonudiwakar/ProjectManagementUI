@@ -30,7 +30,7 @@ const CreateTask = () => {
         taskTitle: '',
         taskDescription: '',
         taskPriority: '',
-        assignee: '',
+        assigneeUser: '',
         taskPoint: '',
     });
 
