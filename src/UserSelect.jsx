@@ -12,8 +12,8 @@ const UserSelect = ({ onUserSelect }) => {
       myAxios.get(`/api/allUser/${username}`)
         .then(response => {
           const userOptions = response.data.map(user => ({
-            value: user.userName, // Assuming 'userId' is a unique identifier for the user
-            label: user.userName // Assuming 'userName' is the user's name
+            value: user.userName,
+            label: user.userName
           }));
           setOptions(userOptions);
         })

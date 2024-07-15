@@ -11,15 +11,19 @@ const projects = [
     { value: 'project2', label: 'Project 2' },
 ];
 
-const issueTypes = [
-    { value: 'bug', label: 'Bug' },
-    { value: 'feature', label: 'Feature' },
+const priorities = [
+    { value: 'LOW', label: 'LOW' },
+    { value: 'MEDIUM', label: 'MEDIUM' },
+    { value: 'HIGH', label: 'HIGH' },
 ];
 
-const priorities = [
-    { value: 'low', label: 'Low' },
-    { value: 'medium', label: 'Medium' },
-    { value: 'high', label: 'High' },
+const taskEnvoirments = [
+    { value: 'QA', label: 'QA' },
+    { value: 'NA', label: 'NA' },
+    { value: 'DEVELOPMENT', label: 'DEVELOPMENT' },
+    { value: 'SIT', label: 'SIT' },
+    { value: 'UAT', label: 'UAT' },
+    { value: 'PRODUCTION', label: 'PRODUCTION' },
 ];
 
 const EditTask = (Tid) => {
@@ -43,6 +47,7 @@ const EditTask = (Tid) => {
         taskTitle: '',
         taskDescription: '',
         taskPriority: '',
+        taskEnvoirment:'',
         assigneeUser: '',
         taskPoint: ''
     });
@@ -56,6 +61,7 @@ const EditTask = (Tid) => {
                 assigneeUser: task.assigneeUser || '',
                 currentStatus: task.currentStatus || '',
                 taskType: task.taskType || '',
+                taskEnvoirment: task.taskEnvoirment || '',
                 taskPriority: task.taskPriority || '',
                 taskPoint: task.taskPoint || ''
             });
@@ -85,7 +91,7 @@ const EditTask = (Tid) => {
         try {
             const response = await myAxios.patch(apiUrl, formData);
             console.log('Response:', response.data);
-            toast.success('Task Update successfully', { autoClose: 5000 });
+            toast.success(id+' Update successfully', { autoClose: 5000 });
         } catch (error) {
             console.error('Error:', error);
             toast.error('Task Update failed', { autoClose: 5000 });
@@ -120,6 +126,21 @@ const EditTask = (Tid) => {
                                 value={formData.taskDescription}
                                 onChange={handleChange}
                             />
+                             <label>Envoirment</label>
+                             <select
+                                className='select'
+                                name='taskEnvoirment'
+                                value={formData.taskEnvoirment}
+                                onChange={handleChange}
+                            >
+                                <option value="">Select Envoirment                                </option>
+                                {taskEnvoirments.map((envoirment) => (
+                                    <option key={envoirment.value} value={envoirment.value}>
+                                        {envoirment.label}
+                                    </option>
+                                ))}
+                            </select>
+
                             <label>Priority</label>
                             <select
                                 className='select'
@@ -139,7 +160,7 @@ const EditTask = (Tid) => {
                                 type="text"
                                 id="taskPoint"
                                 name="taskPoint"
-                                value={formData.task}
+                                value={formData.taskPoint}
                                 onChange={handleChange}
                             />
                             <button type="submit">Update Task</button>

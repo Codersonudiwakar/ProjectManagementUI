@@ -11,24 +11,35 @@ const projects = [
 ];
 
 const issueTypes = [
-    { value: 'bug', label: 'Bug' },
-    { value: 'story', label: 'Story' },
-    { value: 'test', label: 'Test Plan' },
-    { value: 'feature', label: 'Feature' },
+    { value: 'BUG', label: 'BUG' },
+    { value: 'STORY', label: 'STORY' },
+    { value: 'TEST PLAN', label: 'TEST PLAN' },
+    { value: 'FEATURE', label: 'FEATURE' },
+];
+
+const taskEnvoirments = [
+    { value: 'QA', label: 'QA' },
+    { value: 'NA', label: 'NA' },
+    { value: 'DEVELOPMENT', label: 'DEVELOPMENT' },
+    { value: 'SIT', label: 'SIT' },
+    { value: 'UAT', label: 'UAT' },
+    { value: 'PRODUCTION', label: 'PRODUCTION' },
 ];
 
 const priorities = [
-    { value: 'low', label: 'Low' },
-    { value: 'medium', label: 'Medium' },
-    { value: 'high', label: 'High' },
+    { value: 'LOW', label: 'LOW' },
+    { value: 'MEDIUM', label: 'MEDIUM' },
+    { value: 'HIGH', label: 'HIGH' },
 ];
 
 const CreateTask = () => {
     const [formData, setFormData] = useState({
         project: '',
+        taskEnvoirment:'',
         taskType: '',
         taskTitle: '',
         taskDescription: '',
+        reporterUser:'Sonu Kumar Diwakar',
         taskPriority: '',
         assigneeUser: '',
         taskPoint: '',
@@ -39,17 +50,20 @@ const CreateTask = () => {
     };
 
     const handleUserSelect = (selectedUser) => {
-        setFormData({ ...formData, assigneUser: selectedUser ? selectedUser.value : '' });
+        setFormData({ ...formData, assigneeUser: selectedUser ? selectedUser.value : '' });
+        console.log(selectedUser+"selected user");
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const apiUrl = '/addTask';
+        console.log(formData);
 
         try {
             const response = await myAxios.post(apiUrl, formData);
             console.log('Response:', response.data);
             toast.success('Task created successfully', { autoClose: 5000 });
+        
         } catch (error) {
             console.error('Error:', error);
             toast.error('Task creation failed', { autoClose: 5000 });
@@ -76,6 +90,21 @@ const CreateTask = () => {
                                     </option>
                                 ))}
                             </select>
+                            <label>Envoirment</label>
+                            <select
+                                className='select'
+                                value={formData.taskEnvoirment}
+                                onChange={(e) => handleChange('taskEnvoirment', e.target.value)}
+                            >
+                                <option value="">Select Task Envoirment</option>
+                                {taskEnvoirments.map((envoirment) => (
+                                    <option key={envoirment.value} value={envoirment.value}>
+                                        {envoirment.label}
+                                    </option>
+                                ))}
+                            </select>
+
+
                             <label>Task Type</label>
                             <select
                                 className='select'

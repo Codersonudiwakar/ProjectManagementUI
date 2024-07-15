@@ -47,12 +47,18 @@ const MyTask = () => {
   ];
 
   return (
-    <ReactTabulator
-      data={tableData}
-      columns={columns}
-      options={options}
-      layout="fitDataFill"
-    />
+    <div>
+    {tableData.length > 0 ? (
+      <ReactTabulator
+        data={tableData}
+        columns={columns}
+        options={options}
+        layout="fitDataFill"
+      />
+    ) : (
+      <p>No data available</p>
+    )}
+  </div>
   );
 };
 

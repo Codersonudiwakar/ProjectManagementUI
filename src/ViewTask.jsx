@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/esm/Button';
 import Modal from 'react-modal';
 import EditUserSelect from './EditUserSelect';
 import TaskStage from './Opreation';
+import Opreation from './Opreation';
 
 const ViewTask = () => {
   const { id } = useParams();
@@ -41,6 +42,10 @@ const ViewTask = () => {
     console.log('Selected user:', selectedUser);
   };
 
+  const handleStatusSelect = (selectedStatus) => {
+    console.log('Selected Status:', selectedStatus);
+  };
+
 
   console.log("this is tASK ID ID HERE " + TSid);
   return (
@@ -58,13 +63,17 @@ const ViewTask = () => {
       </Modal>
       <div class="container">
         <div>
-          <h1>{task?.taskTitle}</h1>
+          <h2>{task?.taskTitle}</h2>
         </div>
         <div class="header">
           <Button variant="primary" onClick={openModal}>Edit Task</Button>{' '}
 
           <div>
-            <TaskStage/>
+          <Opreation
+              onStatusSelect={handleStatusSelect}
+              defaultStatus={task?.currentStatus}
+              id={task?.taskID}
+            />;
           </div>
 
           {/* <div><h4>Assigned User</h4><p>{task?.assigneeUser}</p></div> */}
@@ -97,7 +106,7 @@ const ViewTask = () => {
               </tr>
               <tr>
                 <td>Envoirment :</td>
-                <td>{task?.taskID}</td>
+                <td>{task?.taskEnvoirment}</td>
               </tr>
             </table>
           </div>
