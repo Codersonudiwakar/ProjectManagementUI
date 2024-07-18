@@ -5,23 +5,23 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
 const CommentForm = (TSid) => {
+    const { taskId } = useParams();
     const [formData, setCommentData] = useState({
-        taskID:'',
+        taskID:TSid.taskId,
         comments:'',
         createdDate:'',
         commentUsername:'Sonu kumar diwakar'
-
     });
 
     const handleChange = (field, value) => {
         setCommentData({ ...formData, [field]: value });
     };
     const handleSubmit = async (e) => {
-        console.log("thi sis is"+TSid);
         console.log(formData);
         e.preventDefault();
         const apiUrl = '/addComment';
         console.log(formData);
+    
 
         try {
             const response = await myAxios.post(apiUrl, formData);
