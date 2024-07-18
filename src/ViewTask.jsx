@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 import EditUserSelect from './EditUserSelect';
 import TaskStage from './Opreation';
 import Opreation from './Opreation';
+import CommentForm from './Comments';
 
 const ViewTask = () => {
   const { id } = useParams();
@@ -46,8 +47,6 @@ const ViewTask = () => {
     console.log('Selected Status:', selectedStatus);
   };
 
-
-  console.log("this is tASK ID ID HERE " + TSid);
   return (
     <>
       <Modal
@@ -120,8 +119,7 @@ const ViewTask = () => {
           <h2>All Comments</h2>
           <p>There are no comments yet on this issue.</p>
           <div class="comments">
-            <input type="text" placeholder="Add a comment..." />
-            <button>Submit</button>
+            <CommentForm taskId={TSid}/>
           </div>
         </div>
         <div class="right-side">
