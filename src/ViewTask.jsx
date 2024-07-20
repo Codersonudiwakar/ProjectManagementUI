@@ -10,6 +10,7 @@ import EditUserSelect from './EditUserSelect';
 import TaskStage from './Opreation';
 import Opreation from './Opreation';
 import CommentForm from './Comments';
+import CommentsList from './ViewComments';
 
 const ViewTask = () => {
   const { id } = useParams();
@@ -116,11 +117,13 @@ const ViewTask = () => {
           <p>{task?.taskDescription}</p>
         </div>
         <div class="activity">
+       
           <h2>All Comments</h2>
           <p>There are no comments yet on this issue.</p>
           <div class="comments">
             <CommentForm taskId={TSid}/>
           </div>
+          <CommentsList id={TSid} />
         </div>
         <div class="right-side">
           <div class="block people">
