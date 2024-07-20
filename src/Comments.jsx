@@ -5,13 +5,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
 const CommentForm = (TSid) => {
-    const { taskId } = useParams();
+
+    const tID=TSid.taskId;
     const [formData, setCommentData] = useState({
-        taskID:TSid.taskId,
+        taskID:tID,
         comments:'',
         createdDate:'',
         commentUsername:'Sonu kumar diwakar'
     });
+    console.log("Taks id is "+tID)
 
     const handleChange = (field, value) => {
         setCommentData({ ...formData, [field]: value });
@@ -22,7 +24,6 @@ const CommentForm = (TSid) => {
         const apiUrl = '/addComment';
         console.log(formData);
     
-
         try {
             const response = await myAxios.post(apiUrl, formData);
             console.log('Response:', response.data);
