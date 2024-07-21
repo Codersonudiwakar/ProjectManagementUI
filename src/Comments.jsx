@@ -13,7 +13,7 @@ const CommentForm = (TSid) => {
         createdDate:'',
         commentUsername:'Sonu kumar diwakar'
     });
-    console.log("Taks id is "+tID)
+    console.log("Taks id is for task "+tID)
 
     const handleChange = (field, value) => {
         setCommentData({ ...formData, [field]: value });
@@ -37,11 +37,11 @@ const CommentForm = (TSid) => {
 
     return (
         <form onSubmit={handleSubmit} className="comment-form">
-            <textarea
+            <textarea className='comment'
                 value={formData.comments}
                 onChange={(e) => handleChange('comments', e.target.value)}
             ></textarea>
-            <button type="submit">Submit Comment</button>
+            <button type="submit">Add Comment</button>
         </form>
     );
 }

@@ -439,15 +439,32 @@ background-color: #f0f0f0;
 .details span strong, .activity span strong {
   font-weight: bold;
 }
-.comments {
+.comment {
   margin-top: 20px;
+  width: 100%;
+  min-height: 100px;
+  text-align: left;
+}
+.comments-card-header{
+  padding: 1px;
+  display: inline;
+  text-align: left;
+}
+.comment-card{
+  margin: 10px;
+  text-align: left;
 }
 .comments input, .comments button {
-  width: 100%;
+  width: 50%;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 5px;
+}
+.comments-card-body{
+  padding: 5px;
+  height: auto;
+  text-align: left;
 }
 .edit-page-p{
   text-align: left;
@@ -496,4 +513,15 @@ th, td {
 }
 th {
   background-color: #f2f2f2;
+}
+
+.btn-container{
+  width: 100%;
+  float: left;
+}
+.btn-container .btn-sub-div{
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
 }

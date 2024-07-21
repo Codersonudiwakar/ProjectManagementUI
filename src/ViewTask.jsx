@@ -58,7 +58,6 @@ const ViewTask = () => {
         overlayClassName="modal-overlay"
       >
         <EditTask closeModal={closeModal} taskId={TSid} />
-        {/* <a to={`/edit-task/${TSid}`} className="modal-close-button">Go to Edit Task Page</a> */}
         <button className="modal-close-button" onClick={closeModal}>Close</button>
       </Modal>
       <div class="container">
@@ -66,25 +65,21 @@ const ViewTask = () => {
           <h2>{task?.taskTitle}</h2>
         </div>
         <div class="header">
-          <Button variant="primary" onClick={openModal}>Edit Task</Button>{' '}
 
-          <div>
-          <Opreation
+          <div className='btn-container'>
+            <div className='btn-sub-div'> <Button variant="primary" onClick={openModal}>Edit Task</Button>{' '}</div>
+            <div className='btn-sub-div'>  <Opreation
               onStatusSelect={handleStatusSelect}
               defaultStatus={task?.currentStatus}
               id={task?.taskID}
-            />;
-          </div>
-
-          {/* <div><h4>Assigned User</h4><p>{task?.assigneeUser}</p></div> */}
-          <div>
-             
-            <EditUserSelect
+            /></div>
+            <div className='btn-sub-div'>     <EditUserSelect
               onUserSelect={handleUserSelect}
               defaultUser={task?.assigneeUser}
               id={task?.taskID}
-            />;
+            /></div>
           </div>
+
         </div>
 
         <div class="details">
@@ -117,11 +112,10 @@ const ViewTask = () => {
           <p>{task?.taskDescription}</p>
         </div>
         <div class="activity">
-       
+
           <h2>All Comments</h2>
-          <p>There are no comments yet on this issue.</p>
           <div class="comments">
-            <CommentForm taskId={TSid}/>
+            <CommentForm taskId={TSid} />
           </div>
           <CommentsList id={TSid} />
         </div>

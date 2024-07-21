@@ -69,9 +69,9 @@ const App=()=> {
           </main>
         </div>
       </div>
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>&copy; 2024 My Homepage. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
       </BrowserRouter>
     </div>
