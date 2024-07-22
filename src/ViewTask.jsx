@@ -73,7 +73,8 @@ const ViewTask = () => {
               defaultStatus={task?.currentStatus}
               id={task?.taskID}
             /></div>
-            <div className='btn-sub-div'>     <EditUserSelect
+            <div className='btn-sub-div'>    
+               <EditUserSelect
               onUserSelect={handleUserSelect}
               defaultUser={task?.assigneeUser}
               id={task?.taskID}

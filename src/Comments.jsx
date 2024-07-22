@@ -8,12 +8,11 @@ const CommentForm = (TSid) => {
 
     const tID=TSid.taskId;
     const [formData, setCommentData] = useState({
-        taskID:tID,
+        taskID:TSid.taskId,
         comments:'',
         createdDate:'',
         commentUsername:'Sonu kumar diwakar'
     });
-    console.log("Taks id is for task "+tID)
 
     const handleChange = (field, value) => {
         setCommentData({ ...formData, [field]: value });

@@ -28,7 +28,7 @@ const Opreation = ({ onStatusSelect, defaultStatus, formData, id }) => {
     let options = [];
     switch (defaultStatus) {
       case 'create':
-        options = Stages;
+        options = Stages.filter(stage => ['inProgress','closed', 'inDev','reject'].includes(stage.value));
         break;
       case 'inProgress':
         options = Stages.filter(stage => ['closed', 'inDev','inQa', 'readyForQA','failedInQA'].includes(stage.value));
@@ -50,6 +50,9 @@ const Opreation = ({ onStatusSelect, defaultStatus, formData, id }) => {
         break;
         case 'reOpen':
         options = Stages.filter(stage => ['inProgress', 'closed', 'reject'].includes(stage.value));
+        break;
+        case 'reject':
+        options = Stages.filter(stage => ['reOpen'].includes(stage.value));
         break;
       case 'closed':
         options = Stages.filter(stage => stage.value === 'reOpen');

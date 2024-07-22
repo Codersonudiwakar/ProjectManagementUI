@@ -525,3 +525,8 @@ th {
   padding: 10px;
   margin: 10px;
 }
+
+.Toastify__toast-body div{
+  font-size: 18px;
+  color: #007bff;
+}
