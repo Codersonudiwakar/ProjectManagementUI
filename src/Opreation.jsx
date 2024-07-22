@@ -13,14 +13,51 @@ const Stages = [
   { value: 'failedInQA', label: 'FAILED IN QA' },
   { value: 'closed', label: 'CLOSED' },
   { value: 'reOpen', label: 'RE-OPEN' },
+  { value: 'reject', label: 'REJECT' },
+  
 ];
 
 const Opreation = ({ onStatusSelect, defaultStatus, formData, id }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [filteredOptions, setFilteredOptions] = useState([]);
 
   useEffect(() => {
     const initialStatus = Stages.find(stage => stage.value === defaultStatus);
     setSelectedOption(initialStatus);
+
+    let options = [];
+    switch (defaultStatus) {
+      case 'create':
+        options = Stages;
+        break;
+      case 'inProgress':
+        options = Stages.filter(stage => ['closed', 'inDev','inQa', 'readyForQA','failedInQA'].includes(stage.value));
+        break;
+        case 'readyForDemo':
+        options = Stages.filter(stage => ['closed', 'reject'].includes(stage.value));
+        break;
+        case 'inDev':
+        options = Stages.filter(stage => ['inProgress', 'readyForQA'].includes(stage.value));
+        break;
+        case 'inQa':
+        options = Stages.filter(stage => ['inProgress', 'closed', 'failedInQA','readyForDemo'].includes(stage.value));
+        break;
+        case 'readyForQA':
+        options = Stages.filter(stage => ['inProgress','closed','inQa'].includes(stage.value));
+        break;
+        case 'failedInQA':
+        options = Stages.filter(stage => ['inProgress', 'reject', 'inDev'].includes(stage.value));
+        break;
+        case 'reOpen':
+        options = Stages.filter(stage => ['inProgress', 'closed', 'reject'].includes(stage.value));
+        break;
+      case 'closed':
+        options = Stages.filter(stage => stage.value === 'reOpen');
+        break;
+      default:
+        options = Stages;
+    }
+    setFilteredOptions(options);
   }, [defaultStatus]);
 
   const handleChange = async (selected) => {
@@ -46,7 +83,7 @@ const Opreation = ({ onStatusSelect, defaultStatus, formData, id }) => {
     <Select
       value={selectedOption}
       onChange={handleChange}
-      options={Stages}
+      options={filteredOptions}
       isSearchable={true}
       placeholder="Select a status..."
     />
